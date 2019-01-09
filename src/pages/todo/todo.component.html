@@ -1,23 +1,14 @@
 <ion-header>
-  <ion-navbar color="primary">
-    <ion-title>To Do Tasks</ion-title>
-  </ion-navbar>
+  <ion-navbar color="primary"> <ion-title>To Do Tasks</ion-title> </ion-navbar>
 </ion-header>
 
 <ion-content>
   <h2>List of To Do Tasks</h2>
+<app-todolist [showCompleted]="false"></app-todolist>
 
-  <ion-list>
-    <button
-    ion-item *ngFor="let list of todoService.todoLists"
-    (click)="listSelected(list)">
-      <button>{{list.title}}</button>
+  <ion-fab bottom right>
+    <button (click)="addList()" ion-fab>
+      <ion-icon name="add"></ion-icon>
     </button>
-  </ion-list>
-
-  <ion-fab bottom right >
-    <button (click)="addList()" ion-fab ><ion-icon name="add"></ion-icon></button>
   </ion-fab>
-
-
 </ion-content>

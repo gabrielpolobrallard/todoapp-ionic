@@ -1,3 +1,5 @@
+import { TodoListComponent } from './../components/todolist.component';
+import { CompletedFilterPipe } from './../pipes/completed-filter/completed-filter';
 import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
@@ -19,7 +21,9 @@ import { addPage } from '../pages/add/add.component';
     TabsPage,
     TodoPage,
     CompletedPage,
-    addPage
+    addPage,
+    CompletedFilterPipe,
+    TodoListComponent
   ],
   imports: [
     BrowserModule,

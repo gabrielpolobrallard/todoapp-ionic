@@ -1,7 +1,7 @@
 import { Component } from "@angular/core";
 import { TodoService } from "../../services/todo.service";
 import { TodoList, TodoListItem } from "../../models";
-import { NavParams } from "ionic-angular";
+import { NavParams, DateTime } from "ionic-angular";
 
 @Component({
   selector: "add-page",
@@ -34,6 +34,20 @@ export class addPage {
   }
   updateItem(item: TodoListItem) {
     item.completed = !item.completed;
+    this.setTodoCompletion();
+    console.log(this.todoList);
     this.todoService.saveStorage();
+  }
+  setTodoCompletion() {
+    const pending = this.todoList.items.filter(item => {
+      return !item.completed;
+    }).length;
+    if (pending === 0) {
+      this.todoList.completed = true;
+      this.todoList.completedOn = new Date();
+    } else {
+      this.todoList.completed = false;
+      this.todoList.completedOn=null;
+    }
   }
 }

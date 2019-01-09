@@ -15,9 +15,7 @@ export class TodoPage {
     private alertCtrl: AlertController
   ) {}
 
-  listSelected(selectedList: TodoList) {
-    this.navCtrl.push(addPage,{ title: selectedList.title , todoList: selectedList})
-  }
+
   addList() {
     const alert = this.alertCtrl.create({
       title: "New List",
@@ -43,13 +41,13 @@ export class TodoPage {
               this.navCtrl.push(addPage, {
                 title: data.title
               });
-
             }
           }
         }
       ]
     });
     alert.present();
-
   }
+
+
 }
