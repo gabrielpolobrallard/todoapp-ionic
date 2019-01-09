@@ -16,7 +16,7 @@ export class TodoPage {
   ) {}
 
   listSelected(selectedList: TodoList) {
-    console.log(selectedList);
+    this.navCtrl.push(addPage,{ title: selectedList.title , todoList: selectedList})
   }
   addList() {
     const alert = this.alertCtrl.create({
@@ -43,12 +43,13 @@ export class TodoPage {
               this.navCtrl.push(addPage, {
                 title: data.title
               });
+
             }
           }
         }
       ]
     });
     alert.present();
-    // this.navCtrl.push(addPage);
+
   }
 }

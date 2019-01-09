@@ -10,7 +10,7 @@
       >TODO LIST : {{ todoList.title | uppercase }}</ion-list-header
     >
     <ion-item>
-      <ion-label floating> New Item</ion-label>
+      <ion-label floating>New Item</ion-label>
       <ion-input
         [(ngModel)]="itemName"
         type="text"
@@ -20,27 +20,34 @@
   </ion-list>
 
   <ion-list *ngIf="todoList.items.length > 0">
-<ion-list-header>
-  Things To Do
-</ion-list-header>
-    <button
-      ion-item
-      detail-none
-      *ngFor="let item of todoList.items"
+    <ion-list-header> Things To Do </ion-list-header>
+
+    <ion-item-sliding
+      *ngFor="let item of todoList.items; let i = index"
       class="animated fadeInDown"
-      (click)="item.completed = !item.completed"
     >
-      <ion-icon
-        *ngIf="item.completed"
-        name="checkbox-outline"
-        item-start
-      ></ion-icon>
-      <ion-icon
-        *ngIf="!item.completed"
-        name="square-outline"
-        item-start
-      ></ion-icon>
-      {{ item.description }}
-    </button>
+      <button ion-item detail-none (click)="updateItem(item)">
+        <ion-icon
+          *ngIf="item.completed"
+          name="checkbox-outline"
+          item-start
+        ></ion-icon>
+        <ion-icon
+          *ngIf="!item.completed"
+          name="square-outline"
+          item-start
+        ></ion-icon>
+        {{ item.description }}
+      </button>
+
+      <ion-item-options side="right">
+          <button (click)="deleteItem(i)" ion-button color="danger" icon-only>
+            <ion-icon name="close"></ion-icon>
+            Delete
+          </button>
+        </ion-item-options>
+
+
+    </ion-item-sliding>
   </ion-list>
 </ion-content>

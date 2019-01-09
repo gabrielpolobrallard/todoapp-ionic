@@ -7,10 +7,21 @@ export class TodoService {
 
   constructor() {
     console.log("Todo Service Initialized");
-    const todo1 = new TodoList("Lista 1");
-    const todo2 = new TodoList("Lista 2");
+    this.loadStorage();
+  }
 
-    this.todoLists.push(todo1, todo2);
-    console.log(this.todoLists);
+  addList(todoList: TodoList) {
+    this.todoLists.push(todoList);
+    this.saveStorage();
+  }
+
+  saveStorage() {
+    localStorage.setItem("data", JSON.stringify(this.todoLists));
+  }
+
+  loadStorage() {
+    if (localStorage.getItem("data")) {
+      this.todoLists = JSON.parse(localStorage.getItem("data"));
+    }
   }
 }
