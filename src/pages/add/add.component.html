@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title>ADD TODO ITEMS</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-list-header
+      >TODO LIST : {{ todoList.title | uppercase }}</ion-list-header
+    >
+    <ion-item>
+      <ion-label floating> New Item</ion-label>
+      <ion-input
+        [(ngModel)]="itemName"
+        type="text"
+        (keyup.enter)="addItem()"
+      ></ion-input>
+    </ion-item>
+  </ion-list>
+
+  <ion-list *ngIf="todoList.items.length > 0">
+<ion-list-header>
+  Things To Do
+</ion-list-header>
+    <button
+      ion-item
+      detail-none
+      *ngFor="let item of todoList.items"
+      class="animated fadeInDown"
+      (click)="item.completed = !item.completed"
+    >
+      <ion-icon
+        *ngIf="item.completed"
+        name="checkbox-outline"
+        item-start
+      ></ion-icon>
+      <ion-icon
+        *ngIf="!item.completed"
+        name="square-outline"
+        item-start
+      ></ion-icon>
+      {{ item.description }}
+    </button>
+  </ion-list>
+</ion-content>

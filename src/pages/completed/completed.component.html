@@ -1,9 +1,15 @@
 <ion-header>
-  <ion-navbar>
+  <ion-navbar color="primary">
     <ion-title>Completed Tasks</ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content>
   <h2>List of Completed Tasks</h2>
+
+  <ion-list>
+    <button ion-item *ngFor="let list of todoService.todoLists">
+      <button>{{ list.title }}</button>
+    </button>
+  </ion-list>
 </ion-content>

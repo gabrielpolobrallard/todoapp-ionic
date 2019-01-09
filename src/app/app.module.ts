@@ -11,12 +11,15 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { TodoPage } from './../pages/todo/todo.component';
 import { CompletedPage } from './../pages/completed/completed.component';
+import { TodoService } from '../services/todo.service';
+import { addPage } from '../pages/add/add.component';
 @NgModule({
   declarations: [
     MyApp,
     TabsPage,
     TodoPage,
-    CompletedPage
+    CompletedPage,
+    addPage
   ],
   imports: [
     BrowserModule,
@@ -27,11 +30,13 @@ import { CompletedPage } from './../pages/completed/completed.component';
     MyApp,
     TabsPage,
     TodoPage,
-    CompletedPage
+    CompletedPage,
+    addPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
+    TodoService,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
