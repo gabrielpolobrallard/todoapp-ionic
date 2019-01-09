@@ -1,5 +1,5 @@
 <ion-list>
-  <ion-item-sliding
+  <ion-item-sliding #slidingItem
     *ngFor="
       let list of (todoService.todoLists | completedFilter: showCompleted)
     "
@@ -10,14 +10,14 @@
     </button>
 
     <ion-item-options side="right">
-      <button (click)="deleteList(list.id)" ion-button color="danger" icon-only>
+      <button (click)="deleteList(list.id,slidingItem)" ion-button color="danger" icon-only>
         <ion-icon name="close"></ion-icon>
         Delete
       </button>
     </ion-item-options>
 
     <ion-item-options side="left">
-        <button (click)="editList(list)" ion-button color="info" icon-only>
+        <button (click)="editList(list,slidingItem)" ion-button color="info" icon-only>
           <ion-icon name="create"></ion-icon>
           Edit
         </button>

@@ -1,5 +1,5 @@
 import { addPage } from "./../pages/add/add.component";
-import { NavController, AlertController } from "ionic-angular";
+import { NavController, AlertController, ItemSliding } from "ionic-angular";
 import { TodoService } from "./../services/todo.service";
 import { Component, Input } from "@angular/core";
 import { TodoList } from "../models";
@@ -13,7 +13,7 @@ export class TodoListComponent {
   constructor(
     public todoService: TodoService,
     private navCtrl: NavController,
-    private alertCtrl:AlertController
+    private alertCtrl: AlertController
   ) {}
   listSelected(selectedList: TodoList) {
     this.navCtrl.push(addPage, {
@@ -21,10 +21,12 @@ export class TodoListComponent {
       todoList: selectedList
     });
   }
-  deleteList(id: number) {
+  deleteList(id: number, slidingItem: ItemSliding) {
     this.todoService.deleteList(id);
+    slidingItem.close();
   }
-  editList(item: TodoList) {
+  editList(item: TodoList, slidingItem: ItemSliding) {
+    slidingItem.close();
     const alert = this.alertCtrl.create({
       title: "Edit To Do List",
       message: "Enter the new name for this list",
@@ -32,7 +34,7 @@ export class TodoListComponent {
         {
           name: "title",
           placeholder: "Enter new name",
-          value:item.title
+          value: item.title
         }
       ],
       buttons: [
